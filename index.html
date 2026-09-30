@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FixPro | Home Services</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: #0b1f3a;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 7%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ffb703;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        nav ul li a:hover {
+            color: #ffb703;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 550px;
+            background: linear-gradient(
+                rgba(11, 31, 58, 0.85),
+                rgba(11, 31, 58, 0.85)
+            ),
+            url("https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            padding: 60px 7%;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #ffb703;
+        }
+
+        .hero p {
+            font-size: 19px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #ffb703;
+            color: #111;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background: #ffd166;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #0b1f3a;
+        }
+
+        /* SECTION */
+        section {
+            padding: 75px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #0b1f3a;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        /* SERVICES */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .service-icon {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            color: #0b1f3a;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* ABOUT */
+        .about {
+            background: white;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        .about-text h2 {
+            font-size: 38px;
+            color: #0b1f3a;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .features {
+            margin-top: 20px;
+        }
+
+        .features div {
+            margin: 12px 0;
+            font-weight: bold;
+        }
+
+        /* BOOKING */
+        .booking {
+            background: #eef2f7;
+        }
+
+        .form-container {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #0b1f3a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #143b68;
+        }
+
+        /* CONTACT */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            text-align: center;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .contact-card .icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            color: #0b1f3a;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: #666;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0b1f3a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        footer span {
+            color: #ffb703;
+        }
+
+        /* CHAT PLACEHOLDER */
+        .chat-placeholder {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 65px;
+            height: 65px;
+            background: #0b1f3a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 999;
+            cursor: pointer;
+        }
+
+        .chat-placeholder:hover {
+            background: #143b68;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+
+            .services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 500px;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+
+    <div class="logo">
+        Fix<span>Pro</span>
+    </div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#booking">Book Service</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            Reliable Home Services
+            <span>At Your Door</span>
+        </h1>
+
+        <p>
+            From AC repair and plumbing to electrical work and home cleaning,
+            FixPro connects you with trusted professionals for all your
+            home service needs.
+        </p>
+
+        <a href="#booking" class="btn">
+            Book a Service
+        </a>
+
+        <a href="#services" class="btn btn-outline">
+            Explore Services
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES -->
+<section id="services">
+
+    <div class="section-title">
+
+        <h2>Our Services</h2>
+
+        <p>
+            Professional services for your home, delivered by trusted experts.
+        </p>
+
+    </div>
+
+
+    <div class="services">
+
+        <div class="service-card">
+
+            <div class="service-icon">❄️</div>
+
+            <h3>AC Repair</h3>
+
+            <p>
+                AC installation, repair, maintenance and servicing
+                by experienced technicians.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">⚡</div>
+
+            <h3>Electrical Services</h3>
+
+            <p>
+                Electrical wiring, switches, lighting installation
+                and electrical repairs.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">🚿</div>
+
+            <h3>Plumbing</h3>
+
+            <p>
+                Leak repair, pipe replacement, drainage and
+                complete plumbing services.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">🧹</div>
+
+            <h3>Home Cleaning</h3>
+
+            <p>
+                Professional deep cleaning and regular home
+                cleaning services.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">🔧</div>
+
+            <h3>Appliance Repair</h3>
+
+            <p>
+                Washing machine, refrigerator, microwave and
+                other appliance repairs.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">🏠</div>
+
+            <h3>Home Maintenance</h3>
+
+            <p>
+                General maintenance services to keep your home
+                safe and comfortable.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section class="about" id="about">
+
+    <div class="about-container">
+
+        <div class="about-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1581783898377-1c85bf937427?auto=format&fit=crop&w=900&q=80"
+                alt="Home Service Professional"
+            >
+
+        </div>
+
+
+        <div class="about-text">
+
+            <h2>Why Choose FixPro?</h2>
+
+            <p>
+                FixPro makes it easy to find reliable professionals
+                for your home service requirements.
+            </p>
+
+            <p>
+                Whether you need an emergency repair or regular
+                maintenance, our professionals are ready to help.
+            </p>
+
+            <div class="features">
+
+                <div>✅ Verified Professionals</div>
+
+                <div>✅ Quick Service</div>
+
+                <div>✅ Transparent Pricing</div>
+
+                <div>✅ Customer Support</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+
+    <div class="section-title">
+
+        <h2>Book a Service</h2>
+
+        <p>
+            Tell us what you need and our team will contact you.
+        </p>
+
+    </div>
+
+
+    <div class="form-container">
+
+        <form id="serviceForm">
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter phone number"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Service Type</label>
+
+                    <select id="service" required>
+
+                        <option value="">
+                            Select Service
+                        </option>
+
+                        <option>AC Repair</option>
+
+                        <option>Electrical Services</option>
+
+                        <option>Plumbing</option>
+
+                        <option>Home Cleaning</option>
+
+                        <option>Appliance Repair</option>
+
+                        <option>Home Maintenance</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Preferred Date</label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Address</label>
+
+                    <input
+                        type="text"
+                        id="address"
+                        placeholder="Enter service address"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Service Description</label>
+
+                <textarea
+                    id="description"
+                    placeholder="Describe your requirement..."
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                Submit Service Request
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+
+    <div class="section-title">
+
+        <h2>Contact Us</h2>
+
+        <p>
+            We're here to help with your home service needs.
+        </p>
+
+    </div>
+
+
+    <div class="contact-container">
+
+        <div class="contact-card">
+
+            <div class="icon">📞</div>
+
+            <h3>Call Us</h3>
+
+            <p>+91 98765 43210</p>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <div class="icon">📧</div>
+
+            <h3>Email</h3>
+
+            <p>support@fixpro.com</p>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <div class="icon">🕐</div>
+
+            <h3>Working Hours</h3>
+
+            <p>Mon - Sun | 8:00 AM - 8:00 PM</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 <span>FixPro</span> Home Services.
+        All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<!-- SALESFORCE EMBEDDED MESSAGING PLACEHOLDER -->
+
+<div
+    class="chat-placeholder"
+    onclick="openChat()"
+    title="Chat with FixPro"
+>
+    💬
+</div>
+
+
+<script>
+
+    /* BOOKING FORM */
+
+    document
+        .getElementById("serviceForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("name").value;
+
+            const service =
+                document.getElementById("service").value;
+
+            alert(
+                "Thank you " +
+                name +
+                "! Your " +
+                service +
+                " request has been submitted."
+            );
+
+            this.reset();
+
+        });
+
+
+    /* CHAT */
+
+    function openChat() {
+
+        alert(
+            "Salesforce Embedded Messaging will open here."
+        );
+
+        /*
+        Paste your Salesforce Embedded Messaging
+        deployment code here when ready.
+
+        Example:
+
+        <script type="text/javascript">
+            Salesforce Embedded Messaging code...
+        <\/script>
+        */
+
+    }
+
+</script>
+
+</body>
+</html>
